@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
+    "test:unit:usecase": "mocha --require ts-node/register --require tsconfig-paths/register 'src/domain/application/use-cases/*.spec.ts'",
     "test": "mocha --require ts-node/register ./src/**/*.spec.ts --exit"
   },
   "author": "",
@@ -34,6 +35,7 @@
     "sinon": "^16.0.0",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "4.2.0",
     "typescript": "^5.2.2"
   }
 }
