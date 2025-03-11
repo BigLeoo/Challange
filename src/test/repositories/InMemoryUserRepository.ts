@@ -50,4 +50,12 @@ export class InMemoryUserRepository implements UserRepository {
   async fetchUsers(): Promise<User[]> {
     return this.users
   }
+
+  async save(user: User): Promise<void> {
+    const itemIndex = this.users.findIndex((item) => {
+      return item._id === user._id
+    })
+
+    this.users[itemIndex] = user
+  }
 }

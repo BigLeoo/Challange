@@ -15,4 +15,6 @@ export interface UserRepository {
   delete(id: string): Promise<void>
 
   fetchUsers(): Promise<User[]>
+
+  save(user: User): Promise<void>
 }
