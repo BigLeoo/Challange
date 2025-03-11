@@ -30,4 +30,20 @@ export class InMemoryUserRepository implements UserRepository {
 
     await this.users.push(user)
   }
+
+  async getUserById(id: string): Promise<User | null> {
+    const user = await this.users.find((user) => {
+      return user._id === id
+    })
+
+    return user
+  }
+
+  async delete(id: string): Promise<void> {
+    const usersFiltered = await this.users.filter((user) => {
+      return user._id !== id
+    })
+
+    this.users = usersFiltered
+  }
 }
