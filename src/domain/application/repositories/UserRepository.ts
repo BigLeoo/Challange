@@ -13,4 +13,6 @@ export interface UserRepository {
   getUserById(id: string): Promise<User | null>
 
   delete(id: string): Promise<void>
+
+  fetchUsers(): Promise<User[]>
 }

@@ -46,4 +46,8 @@ export class InMemoryUserRepository implements UserRepository {
 
     this.users = usersFiltered
   }
+
+  async fetchUsers(): Promise<User[]> {
+    return this.users
+  }
 }
