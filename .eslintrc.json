@@ -1,6 +1,8 @@
 {
     "extends": "@rocketseat/eslint-config/node",
     "rules": {
-        "no-useless-constructor": "off" // Desabilita a regra
+        "no-useless-constructor": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }
