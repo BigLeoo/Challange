@@ -11,6 +11,11 @@ import ObjectId = mongoose.Types.ObjectId
 import { BaseEntity } from './BaseEntity'
 import { User, UserModel } from './User'
 
+export interface Polygon {
+  type: string
+  coordinates: number[][][]
+}
+
 @pre<Region>('save', async function (next) {
   const region = this as Omit<any, keyof Region> & Region
 
@@ -30,6 +35,9 @@ export class Region extends BaseEntity {
 
   @prop({ ref: () => User, required: true })
   user: Ref<User>
+
+  @prop({ required: true, index: '2dsphere', type: 'Polygon' })
+  polygon!: Polygon
 }
 
 export const RegionModel = getModelForClass(Region)
