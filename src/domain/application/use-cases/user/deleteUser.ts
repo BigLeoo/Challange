@@ -1,4 +1,4 @@
-import { UserNotExist } from '@/core/errors/errors/UserNotExist'
+import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
 import { UserRepository } from '../../repositories/UserRepository'
 
 interface DeleteUserUseCaseRequest {
@@ -12,7 +12,7 @@ export class DeleteUserUseCase {
     const user = await this.userRepository.getUserById(id)
 
     if (!user) {
-      throw new UserNotExist()
+      throw new ResourceNotFound()
     }
 
     await this.userRepository.delete(id)

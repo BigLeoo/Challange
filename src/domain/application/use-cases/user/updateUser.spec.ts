@@ -2,7 +2,7 @@ import { InMemoryUserRepository } from '@/test/repositories/InMemoryUserReposito
 import { expect } from 'chai'
 import { randomUUID } from 'crypto'
 import { InMemoryGeoLibRepository } from '@/test/repositories/InMemoryGeoRepository'
-import { UserNotExist } from '@/core/errors/errors/UserNotExist'
+import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
 import { InvalidInputCombination } from '@/core/errors/errors/InvalidInputCombination'
 import { EmailAlreadyExist } from '@/core/errors/errors/EmailAlreadyExist'
 import { UpdateUserUseCase } from './updateUser'
@@ -100,8 +100,8 @@ describe('Update User Use Case', () => {
       await sut.execute(updateUser)
       expect.fail('Expected UserNotExist error to be thrown')
     } catch (error) {
-      expect(error).to.be.instanceOf(UserNotExist)
-      expect(error.message).to.equal('User not exist.')
+      expect(error).to.be.instanceOf(ResourceNotFound)
+      expect(error.message).to.equal('Resource not found.')
     }
   })
 

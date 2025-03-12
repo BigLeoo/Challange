@@ -1,7 +1,7 @@
 import { InMemoryUserRepository } from '@/test/repositories/InMemoryUserRepository'
 import { expect } from 'chai'
 import { randomUUID } from 'crypto'
-import { UserNotExist } from '@/core/errors/errors/UserNotExist'
+import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
 import { DeleteUserUseCase } from './deleteUser'
 import { User } from '@/domain/enterprise/models/User'
 
@@ -49,8 +49,8 @@ describe('Delete User Use Case', () => {
       await sut.execute({ id: '57989941-51b5-483b-bac4-82fe39765c0b' })
       expect.fail('Expected UserNotExist error to be thrown')
     } catch (error) {
-      expect(error).to.be.instanceOf(UserNotExist)
-      expect(error.message).to.equal('User not exist.')
+      expect(error).to.be.instanceOf(ResourceNotFound)
+      expect(error.message).to.equal('Resource not found.')
     }
   })
 })
