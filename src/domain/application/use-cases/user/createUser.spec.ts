@@ -1,16 +1,16 @@
 import { InvalidInputCombination } from '@/core/errors/errors/InvalidInputCombination'
-import { CreateUserUseCase } from './createUser'
 import { InMemoryGeoLibRepository } from '@/test/repositories/InMemoryGeoRepository'
 import { InMemoryUserRepository } from '@/test/repositories/InMemoryUserRepository'
 import { expect } from 'chai'
 import { randomUUID } from 'crypto'
 import { UserAlreadyExist } from '@/core/errors/errors/UserAlreadyExist'
+import { CreateUserUseCase } from './createUser'
 
 let userRepository: InMemoryUserRepository
 let geoRepository: InMemoryGeoLibRepository
 let sut: CreateUserUseCase
 
-describe('Create user Use Case', () => {
+describe('Create User Use Case', () => {
   beforeEach(() => {
     userRepository = new InMemoryUserRepository()
     geoRepository = new InMemoryGeoLibRepository()
