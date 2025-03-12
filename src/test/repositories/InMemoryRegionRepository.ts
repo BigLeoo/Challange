@@ -19,4 +19,20 @@ export class InMemoryRegionRepository implements RegionRepository {
   async fetch(): Promise<Region[]> {
     return this.regions
   }
+
+  async deleteById(regionId: string): Promise<void> {
+    const regionsFiltered = await this.regions.filter((region) => {
+      return region._id !== regionId
+    })
+
+    this.regions = regionsFiltered
+  }
+
+  async getById(regionId: string): Promise<Region | null> {
+    const region = await this.regions.find((region) => {
+      return region._id === regionId
+    })
+
+    return region
+  }
 }
