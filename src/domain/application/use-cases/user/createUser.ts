@@ -28,7 +28,7 @@ export class CreateUserUseCase {
       throw new InvalidInputCombination()
     }
 
-    const userWithSameEmail = await this.userRepository.getUserByEmail(email)
+    const userWithSameEmail = await this.userRepository.getByEmail(email)
 
     if (userWithSameEmail) {
       throw new UserAlreadyExist()

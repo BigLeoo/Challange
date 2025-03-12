@@ -3,7 +3,7 @@ import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
 import { RegionRepository } from '../../repositories/RegionRepository'
 import { Polygon } from '@/domain/enterprise/models/Region'
 
-interface RegionUserCaseRequest {
+interface UpdateRegionUseCaseRequest {
   regionId: string
   name?: string
   polygon?: Polygon
@@ -16,7 +16,7 @@ export class UpdateRegionUseCase {
     regionId,
     name,
     polygon,
-  }: RegionUserCaseRequest): Promise<void> {
+  }: UpdateRegionUseCaseRequest): Promise<void> {
     if (!name && !polygon) {
       throw new InvalidInputCombination()
     }

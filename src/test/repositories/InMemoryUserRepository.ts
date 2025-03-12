@@ -5,7 +5,7 @@ import { randomUUID } from 'crypto'
 export class InMemoryUserRepository implements UserRepository {
   public users: User[] = []
 
-  async getUserByEmail(email: string): Promise<User | null> {
+  async getByEmail(email: string): Promise<User | null> {
     const user = await this.users.find((user) => {
       return user.email === email
     })
@@ -31,23 +31,23 @@ export class InMemoryUserRepository implements UserRepository {
     await this.users.push(user)
   }
 
-  async getUserById(id: string): Promise<User | null> {
+  async getById(userId: string): Promise<User | null> {
     const user = await this.users.find((user) => {
-      return user._id === id
+      return user._id === userId
     })
 
     return user
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(userId: string): Promise<void> {
     const usersFiltered = await this.users.filter((user) => {
-      return user._id !== id
+      return user._id !== userId
     })
 
     this.users = usersFiltered
   }
 
-  async fetchUsers(): Promise<User[]> {
+  async fetch(): Promise<User[]> {
     return this.users
   }
 
