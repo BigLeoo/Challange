@@ -5,4 +5,5 @@ export interface RegionRepository {
   fetch(): Promise<Region[]>
   getById(regionId: string): Promise<Region | null>
   deleteById(regionId: string): Promise<void>
+  save(region: Region): Promise<void>
 }

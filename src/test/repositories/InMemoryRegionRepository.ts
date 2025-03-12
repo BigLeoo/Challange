@@ -35,4 +35,12 @@ export class InMemoryRegionRepository implements RegionRepository {
 
     return region
   }
+
+  async save(region: Region): Promise<void> {
+    const itemIndex = this.regions.findIndex((item) => {
+      return item._id === region._id
+    })
+
+    this.regions[itemIndex] = region
+  }
 }
