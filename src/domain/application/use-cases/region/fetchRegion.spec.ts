@@ -50,10 +50,10 @@ describe('Fetch Regions Use Case', () => {
 
     regionRepository.regions.push(region1, region2)
 
-    await sut.execute()
+    const { regions } = await sut.execute()
 
-    expect(regionRepository.regions).length(2)
-    expect(regionRepository.regions[0]).equals(region1)
-    expect(regionRepository.regions[1]).equals(region2)
+    expect(regions).length(2)
+    expect(regions[0]).equals(region1)
+    expect(regions[1]).equals(region2)
   })
 })
