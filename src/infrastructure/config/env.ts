@@ -8,6 +8,7 @@ const envSchema = z.object({
     .default(
       'mongodb://admin:example@localhost:27017/oz-tech-test?authSource=admin',
     ),
+  GOOGLE_API_KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
