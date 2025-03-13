@@ -34,10 +34,10 @@ describe('Fetch Users Use Case', () => {
 
     userRepository.users.push(user1, user2)
 
-    await sut.execute()
+    const { users } = await sut.execute()
 
-    expect(userRepository.users).length(2)
-    expect(userRepository.users[0]).equals(user1)
-    expect(userRepository.users[1]).equals(user2)
+    expect(users).length(2)
+    expect(users[0]).equals(user1)
+    expect(users[1]).equals(user2)
   })
 })
