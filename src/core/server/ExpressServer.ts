@@ -1,24 +1,24 @@
-import express, { Application } from 'express'
+import express, { Application, Router } from 'express'
 import { IServer } from './IServer'
-import { IRoute } from '../../infrastructure/Interfaces/IRoute'
 
 export class ExpressServer implements IServer {
   private app: Application
   private port: number
 
-  constructor(port: number) {
+  constructor(port: number, routes: Router[]) {
     this.app = express()
     this.port = port
     this.middleware()
+    this.configureRoutes(routes)
   }
 
   private middleware(): void {
     this.app.use(express.json())
   }
 
-  public configureRoutes(routes: IRoute[]): void {
+  public configureRoutes(routes: Router[]): void {
     routes.forEach((route) => {
-      this.app.use('/api', route.registerRoutes())
+      this.app.use('/api', route)
     })
   }
 
