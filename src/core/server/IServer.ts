@@ -1,6 +1,6 @@
-import { IRoute } from '../../infrastructure/Interfaces/IRoute'
+import { Router } from 'express'
 
 export interface IServer {
-  configureRoutes(routes: IRoute[]): void
+  configureRoutes(routes: Router[]): void
   start(): void
 }
