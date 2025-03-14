@@ -1,4 +1,4 @@
-import { User } from '@/models'
+import { User } from '@/domain/enterprise/models/User'
 import { UserRepository } from '../../repositories/UserRepository'
 
 interface FetchUsersUseCaseResponse {
