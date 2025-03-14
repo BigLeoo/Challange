@@ -4,6 +4,6 @@ export class DatabaseConnection {
   constructor(private database: IDatabase) {}
 
   async execute() {
-    this.database.connect()
+    await this.database.connect()
   }
 }
