@@ -7,7 +7,6 @@ import {
 } from '@typegoose/typegoose'
 import * as mongoose from 'mongoose'
 import ObjectId = mongoose.Types.ObjectId
-
 import { BaseEntity } from './BaseEntity'
 import { User, UserModel } from './User'
 
@@ -23,17 +22,22 @@ export interface Polygon {
 
   if (region.isNew) {
     const user = await UserModel.findOne({ _id: region.user })
-    user.regions.push(region._id)
-    await user.save({ session: region.$session() })
+
+    if (user) {
+      user.regions.push(region._id)
+      await user.save({ session: region.$session() })
+    }
   }
-  next(region.validateSync())
+
+  const error = region.validateSync()
+  next(error)
 })
 @modelOptions({ schemaOptions: { validateBeforeSave: false } })
 export class Region extends BaseEntity {
   @prop({ required: true })
   name!: string
 
-  @prop({ ref: () => User, required: true })
+  @prop({ ref: 'User', required: true })
   user: Ref<User>
 
   @prop({ required: true, index: '2dsphere', type: 'Polygon' })
