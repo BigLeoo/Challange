@@ -1,8 +1,8 @@
-import { env } from '@/infrastructure/config/env'
+import { env } from '../../infrastructure/config/env'
 import { GeoLibRepository } from './IGeolib'
 import axios from 'axios'
 
-class GeoLib implements GeoLibRepository {
+export class GeoLib implements GeoLibRepository {
   public async getAddressFromCoordinates(
     coordinates: [number, number] | { lat: number; lng: number },
   ): Promise<string> {
