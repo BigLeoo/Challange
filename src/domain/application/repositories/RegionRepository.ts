@@ -1,4 +1,4 @@
-import { Polygon, Region } from '@/domain/enterprise/models/Region'
+import { Polygon, Region } from '../../enterprise/models/Region'
 
 export interface RegionRepository {
   create(name: string, polygon: Polygon, userId: string): Promise<void>

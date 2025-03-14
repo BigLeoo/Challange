@@ -1,6 +1,6 @@
-import { InvalidInputCombination } from '@/core/errors/errors/InvalidInputCombination'
-import { GeoLibRepository } from '@/core/utils/IGeolib'
-import { UserAlreadyExist } from '@/core/errors/errors/UserAlreadyExist'
+import { InvalidInputCombination } from '../../../../core/errors/errors/InvalidInputCombination'
+import { UserAlreadyExist } from '../../../../core/errors/errors/UserAlreadyExist'
+import { GeoLibRepository } from '../../../../core/utils/IGeolib'
 import { UserRepository } from '../../repositories/UserRepository'
 
 interface CreateUserUseCaseRequest {

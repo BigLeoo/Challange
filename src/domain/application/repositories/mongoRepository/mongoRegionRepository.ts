@@ -1,4 +1,4 @@
-import { Polygon, Region, RegionModel } from '@/domain/enterprise/models/Region'
+import { Polygon, Region, RegionModel } from '../../../enterprise/models/Region'
 import { RegionRepository } from '../RegionRepository'
 
 export class MongoRegionRepository implements RegionRepository {

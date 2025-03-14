@@ -1,4 +1,4 @@
-import { User, UserModel } from '@/domain/enterprise/models/User'
+import { User, UserModel } from '../../../enterprise/models/User'
 import { UserRepository } from '../UserRepository'
 
 export class MongoUserRepository implements UserRepository {
