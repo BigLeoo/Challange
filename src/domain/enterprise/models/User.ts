@@ -5,9 +5,9 @@ import { geoLib } from '../../../core/utils/Geolib'
 
 @pre<User>('save', async function (next) {
   const user = this as Omit<any, keyof User> & User
-  if (user.isModified('coordinates')) {
+  if (user.isModified('coordinates') && !user.isNew) {
     user.address = await geoLib.getAddressFromCoordinates(user.coordinates)
-  } else if (user.isModified('address')) {
+  } else if (user.isModified('address') && !user.isNew) {
     const response = await geoLib.getCoordinatesFromAddress(user.address)
     user.coordinates = [response[0], response[1]]
   }
