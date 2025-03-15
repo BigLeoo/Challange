@@ -18,7 +18,7 @@ export class InMemoryUserRepository implements UserRepository {
     email: string,
     address: string,
     coordinates: [number, number],
-  ): Promise<void> {
+  ): Promise<User> {
     const user = {
       name,
       email,
@@ -29,6 +29,8 @@ export class InMemoryUserRepository implements UserRepository {
     }
 
     await this.users.push(user)
+
+    return user
   }
 
   async getById(userId: string): Promise<User | null> {

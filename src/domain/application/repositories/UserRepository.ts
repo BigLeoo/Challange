@@ -6,7 +6,7 @@ export interface UserRepository {
     email: string,
     address: string,
     coordinates: [number, number],
-  ): Promise<void>
+  ): Promise<User>
   getByEmail(email: string): Promise<User | null>
   getById(userId: string): Promise<User | null>
   delete(userId: string): Promise<void>
