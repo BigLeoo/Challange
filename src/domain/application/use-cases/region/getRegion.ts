@@ -1,4 +1,4 @@
-import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
+import { ResourceNotFound } from '../../../../core/errors/errors/ResourceNotFound'
 import { RegionRepository } from '../../repositories/RegionRepository'
 import { Region } from '@/domain/enterprise/models/Region'
 
