@@ -1,12 +1,13 @@
-import { InvalidInputCombination } from '@/core/errors/errors/InvalidInputCombination'
-import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
+import { InvalidInputCombination } from '../../../../core/errors/errors/InvalidInputCombination'
+import { ResourceNotFound } from '../../../../core/errors/errors/ResourceNotFound'
 import { RegionRepository } from '../../repositories/RegionRepository'
-import { Polygon } from '@/domain/enterprise/models/Region'
+import { Polygon } from '../../../../domain/enterprise/models/Region'
 
 interface UpdateRegionUseCaseRequest {
   regionId: string
   name?: string
   polygon?: Polygon
+  userId?: string
 }
 
 export class UpdateRegionUseCase {
@@ -16,8 +17,9 @@ export class UpdateRegionUseCase {
     regionId,
     name,
     polygon,
+    userId,
   }: UpdateRegionUseCaseRequest): Promise<void> {
-    if (!name && !polygon) {
+    if (!name && !polygon && !userId) {
       throw new InvalidInputCombination()
     }
 
@@ -29,6 +31,7 @@ export class UpdateRegionUseCase {
 
     region.name = name
     region.polygon = polygon
+    region.user = userId
 
     await this.regionRepository.save(region)
   }
