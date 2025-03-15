@@ -40,7 +40,7 @@ export class Region extends BaseEntity {
   @prop({ ref: 'User', required: true })
   user: Ref<User>
 
-  @prop({ required: true, index: '2dsphere', type: 'Polygon' })
+  @prop({ required: true, index: '2dsphere' })
   polygon!: Polygon
 }
 
