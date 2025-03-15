@@ -8,7 +8,6 @@ export class MongoUserRepository implements UserRepository {
     address: string,
     coordinates: [number, number],
   ): Promise<void> {
-    await UserModel.create({ name, email, address, coordinates })
     const session = await UserModel.startSession()
     try {
       session.startTransaction()
