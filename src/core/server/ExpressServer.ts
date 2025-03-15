@@ -24,7 +24,7 @@ export class ExpressServer implements IServer {
 
   public start(): void {
     this.app.listen(this.port, () => {
-      console.log(`Server is running on http://localhost:${this.port}`)
+      console.log(`🚀 Server is running on http://localhost:${this.port}/api`)
     })
   }
 }
