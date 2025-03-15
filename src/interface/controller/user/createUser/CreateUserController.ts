@@ -37,14 +37,14 @@ export class CreateUserController {
         request.body,
       )
 
-      await this.createUserUseCase.execute({
+      const { user } = await this.createUserUseCase.execute({
         name,
         email,
         address,
         coordinates,
       })
 
-      return response.status(StatusCodes.CREATED).send()
+      return response.status(StatusCodes.CREATED).send({ user })
     } catch (error) {
       if (error instanceof z.ZodError) {
         const zodValidationError = new ZodValidationError(error)

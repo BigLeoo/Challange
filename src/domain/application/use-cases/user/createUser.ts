@@ -1,3 +1,4 @@
+import { User } from '@/domain/enterprise/models/User'
 import { InvalidInputCombination } from '../../../../core/errors/errors/InvalidInputCombination'
 import { UserAlreadyExist } from '../../../../core/errors/errors/UserAlreadyExist'
 import { GeoLibRepository } from '../../../../core/utils/IGeolib'
@@ -10,7 +11,9 @@ interface CreateUserUseCaseRequest {
   coordinates: [number, number] | null
 }
 
-interface CreateUserUseCaseResponse {}
+interface CreateUserUseCaseResponse {
+  user: User
+}
 
 export class CreateUserUseCase {
   constructor(
@@ -38,15 +41,28 @@ export class CreateUserUseCase {
       const coordinates =
         await this.geoLibRepository.getCoordinatesFromAddress(address)
 
-      await this.userRepository.create(name, email, address, coordinates)
-      return
+      const user = await this.userRepository.create(
+        name,
+        email,
+        address,
+        coordinates,
+      )
+
+      return { user }
     }
 
     if (coordinates) {
       const address =
         await this.geoLibRepository.getAddressFromCoordinates(coordinates)
 
-      await this.userRepository.create(name, email, address, coordinates)
+      const user = await this.userRepository.create(
+        name,
+        email,
+        address,
+        coordinates,
+      )
+
+      return { user }
     }
   }
 }
