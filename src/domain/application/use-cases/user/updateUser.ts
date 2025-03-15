@@ -1,7 +1,7 @@
-import { InvalidInputCombination } from '@/core/errors/errors/InvalidInputCombination'
-import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
-import { EmailAlreadyExist } from '@/core/errors/errors/EmailAlreadyExist'
-import { GeoLibRepository } from '@/core/utils/IGeolib'
+import { InvalidInputCombination } from '../../../../core/errors/errors/InvalidInputCombination'
+import { ResourceNotFound } from '../../../../core/errors/errors/ResourceNotFound'
+import { EmailAlreadyExist } from '../../../../core/errors/errors/EmailAlreadyExist'
+import { GeoLibRepository } from '../../../../core/utils/IGeolib'
 import { UserRepository } from '../../repositories/UserRepository'
 
 interface UpdateUserUseCaseRequest {
@@ -32,17 +32,17 @@ export class UpdateUserUseCase {
       throw new InvalidInputCombination()
     }
 
+    const user = await this.userRepository.getById(id)
+
+    if (!user) {
+      throw new ResourceNotFound()
+    }
+
     const userWithThisEmailAlreadyExist =
       await this.userRepository.getByEmail(email)
 
     if (userWithThisEmailAlreadyExist) {
       throw new EmailAlreadyExist()
-    }
-
-    const user = await this.userRepository.getById(id)
-
-    if (!user) {
-      throw new ResourceNotFound()
     }
 
     if (address) {
