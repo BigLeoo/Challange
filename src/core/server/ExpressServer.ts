@@ -2,7 +2,7 @@ import express, { Application, Router } from 'express'
 import { IServer } from './IServer'
 
 export class ExpressServer implements IServer {
-  private app: Application
+  public app: Application
   private port: number
 
   constructor(port: number, routes: Router[]) {
