@@ -43,31 +43,31 @@ export class CreateUserController {
         address,
         coordinates,
       })
+
+      return response.status(StatusCodes.CREATED).send()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const { message, formattedErrors } = new ZodValidationError(error)
+        const zodValidationError = new ZodValidationError(error)
 
-        return response.status(StatusCodes.BAD_REQUEST).send({
-          message,
-          errors: formattedErrors,
+        return response.status(zodValidationError.statusCode()).send({
+          message: zodValidationError.message,
+          errors: zodValidationError.formattedErrors,
         })
       }
 
       if (error instanceof InvalidInputCombination) {
         return response
-          .status(StatusCodes.BAD_REQUEST)
+          .status(error.statusCode())
           .send({ message: error.message })
       }
 
       if (error instanceof UserAlreadyExist) {
         return response
-          .status(StatusCodes.CONFLICT)
+          .status(error.statusCode())
           .send({ message: error.message })
       }
 
       throw error
     }
-
-    return response.status(StatusCodes.CREATED).send()
   }
 }
