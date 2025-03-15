@@ -1,4 +1,4 @@
-import { ResourceNotFound } from '@/core/errors/errors/ResourceNotFound'
+import { ResourceNotFound } from '../../../../core/errors/errors/ResourceNotFound'
 import { RegionRepository } from '../../repositories/RegionRepository'
 
 interface DeleteRegionUseCaseRequest {
