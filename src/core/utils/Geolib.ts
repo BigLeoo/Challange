@@ -7,7 +7,7 @@ export class GeoLib implements GeoLibRepository {
     coordinates: [number, number] | { lat: number; lng: number },
   ): Promise<string> {
     try {
-      const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates[0]},${coordinates[1]}&key=${env.GOOGLE_API_KEY}`
+      const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates[1]},${coordinates[0]}&key=${env.GOOGLE_API_KEY}`
 
       const response = await axios.get(apiUrl)
 
