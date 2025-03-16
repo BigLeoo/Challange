@@ -29,7 +29,7 @@ export class FetchRegionsByDistanceUseCase {
 
     if (userId) {
       const regionsFilteredByUserId = regions.filter((region) => {
-        return region.user === userId
+        return region.user.toString() === userId
       })
       return { regions: regionsFilteredByUserId }
     }
