@@ -40,13 +40,13 @@ export class CreateRegionController {
         coordinates: polygonCoordinates as number[][][],
       }
 
-      await this.createRegionUseCase.execute({
+      const region = await this.createRegionUseCase.execute({
         name,
         polygon,
         userId,
       })
 
-      return response.status(StatusCodes.CREATED).send()
+      return response.status(StatusCodes.CREATED).send({ region })
     } catch (error) {
       if (error instanceof z.ZodError) {
         const zodValidationError = new ZodValidationError(error)
