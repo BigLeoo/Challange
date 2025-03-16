@@ -6,12 +6,13 @@ export class MongoRegionRepository implements RegionRepository {
     name: string,
     polygon: Polygon,
     userId: string,
-  ): Promise<void> {
+  ): Promise<Region> {
     const session = await RegionModel.startSession()
     try {
       session.startTransaction()
-      await RegionModel.create({ name, polygon, user: userId })
+      const region = await RegionModel.create({ name, polygon, user: userId })
       await session.commitTransaction()
+      return region
     } catch (error) {
       await session.abortTransaction()
       throw error

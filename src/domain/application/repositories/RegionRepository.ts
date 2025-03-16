@@ -1,7 +1,7 @@
 import { Polygon, Region } from '../../enterprise/models/Region'
 
 export interface RegionRepository {
-  create(name: string, polygon: Polygon, userId: string): Promise<void>
+  create(name: string, polygon: Polygon, userId: string): Promise<Region>
   fetch(): Promise<Region[]>
   getById(regionId: string): Promise<Region | null>
   deleteById(regionId: string): Promise<void>

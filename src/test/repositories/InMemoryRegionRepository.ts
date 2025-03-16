@@ -5,15 +5,21 @@ import { randomUUID } from 'crypto'
 export class InMemoryRegionRepository implements RegionRepository {
   public regions: Region[] = []
 
-  async create(name: string, polygon: Polygon, userId: string): Promise<void> {
-    const regionToCreate: Region = {
+  async create(
+    name: string,
+    polygon: Polygon,
+    userId: string,
+  ): Promise<Region> {
+    const region: Region = {
       name,
       polygon,
       _id: randomUUID(),
       user: userId,
     }
 
-    await this.regions.push(regionToCreate)
+    await this.regions.push(region)
+
+    return region
   }
 
   async fetch(): Promise<Region[]> {
