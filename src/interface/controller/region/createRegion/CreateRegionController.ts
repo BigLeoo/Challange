@@ -46,7 +46,7 @@ export class CreateRegionController {
         userId,
       })
 
-      return response.status(StatusCodes.CREATED).send({ region })
+      return response.status(StatusCodes.CREATED).send(region)
     } catch (error) {
       if (error instanceof z.ZodError) {
         const zodValidationError = new ZodValidationError(error)
