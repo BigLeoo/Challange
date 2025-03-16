@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "test:unit:usecase": "mocha --require ts-node/register --require tsconfig-paths/register 'src/domain/application/use-cases/**/*.spec.ts'",
-    "test:e2e":"mocha --require ts-node/register src/test/**/*.spec.ts",
-    "test": "mocha --require ts-node/register src/**/*.spec.ts --exit"
+    "test:user:e2e":"mocha --require ts-node/register src/test/e2e/controllers/user/*.spec.ts",
+    "test:region:e2e":"mocha --require ts-node/register src/test/e2e/controllers/region/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
